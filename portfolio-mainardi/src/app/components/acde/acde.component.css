@@ -1,0 +1,33 @@
+.row{
+    padding: 15px;
+}
+div{
+    background-color: rgb(127, 208, 255);
+    text-align: center;
+}
+#nombre{
+    font-weight: bold;
+    margin-top: 30%;
+    
+}
+@media (min-width: 576px){
+#fotofacu{
+    position: absolute;
+    width: 10%;
+    border-radius: 100%;
+    left: 5%;
+    top: 320px;
+}
+}
+
+@media (max-width: 575px){
+    #fotofacu{
+        position: absolute;
+        width: 30%;
+        border-radius: 100%;
+        left: 34%;
+        top: 613px;
+
+    }
+    }
+    
