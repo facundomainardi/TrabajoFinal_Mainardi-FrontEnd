@@ -1,31 +1,148 @@
+
+
+ <!--<div class="row">
+  <div class="col-sm-6"  *ngFor="let Proyectos of proyectos">
+    <div class="card" style="height: 100% width: 18rem;">
+      <img class="card-img-top" src={{Proyectos.img}} alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{Proyectos.nombreE}}</h5>
+        <p class="card-text">{{Proyectos.descripcionE}}</p>
+        
+      </div>
+    </div>
+  </div>
+ 
+</div>-->
+
+
 <div class="row">
     <h1>Proyectos</h1>
-    <div class="contenedor">
-        <div class="col-sm-12 col-md-7 col-lg-7 parte1">
-            <h1>Proyecto</h1>
-            <p>Lorem ipsum dolor sit, 
-                amet consectetur adipisicing elit. 
-                Blanditiis eius quia repellat architecto debitis numquam,
-                 reprehenderit eaque reiciendis 
-                 nam ex hic odit suscipit molestias excepturi, 
-                quae sequi, eos voluptas commodi!</p>
+    <div class="col-lg-2">
+        
+ 
+     <!--<button type="button" class="btn btn-dark" routerLink="/newproyectos" *ngIf="isLogged">
+            Agregar Proyectos
+        </button>
 
-        </div>
-        <div class="col-sm-12 col-md-3 col-lg-3 offset-md-1
-        offset-lg-1 parte2">
-            <img src="../../../assets/facu.jpg" 
-            class="img-fluid img-proy">
-        </div>
-        <div>
-            <h1>Proyecto1</h1>
-            <p>Lorem ipsum dolor sit, 
-                amet consectetur adipisicing elit. 
-                Blanditiis eius quia repellat architecto debitis numquam,
-                 reprehenderit eaque reiciendis 
-                 nam ex hic odit suscipit molestias excepturi, 
-                quae sequi, eos voluptas commodi!</p>
 
+
+Button trigger modal -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" *ngIf="isLogged">
+    Agregar Proyectos
+  </button>
+  
+    </div>
+    <div class="col lg 1"></div>
+
+    <div class="col-lg-11">
+      <!--<table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">DESCRIPCIÓN</th>     
+            <th scope="col">IMÁGEN</th>              
+          </tr>
+        </thead>
+            <tbody>          
+                <tr *ngFor="let Proyectos of proyectos">              
+                    <td >
+                        {{Proyectos.nombreE}}
+                    </td>
+                    <td>
+                      {{Proyectos.descripcionE}}
+                    </td>
+                    <td>
+                      <img src={{Proyectos.img}} class="img-fluid" width="150px">
+                    </td>
+                    <td *ngIf="isLogged">
+                      <button class="btn btn-light" routerLink="/editproyectos/{{Proyectos.id}}">
+                          <i class="bi bi-card-image" ></i>CARGAR IMAGEN </button>                           
+                  </td>
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-light" routerLink="/editproyectos/{{Proyectos.id}}">
+                            <i class="bi bi-pencil-fill"></i> </button>                           
+                    </td>                   
+                    <td *ngIf="isLogged">
+                        <button class="btn btn-secondary" (click)="delete(Proyectos.id)">
+                            <i class="bi bi-trash-fill"></i> </button>
+                    </td>
+                  
+                </tr>
+            </tbody>
+        </table>
+    </div>-->
+    <div class="accordion" id="accordionExample" >
+      <div class="accordion-item"  *ngFor="let Proyectos of proyectos; let i = index" >
+        <h2 class="accordion-header" [id]="'heading'+i" >
+          <button class="accordion-button" 
+          [ngClass]="{'collapsed': i != 0}" type="button" 
+          data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i"  
+          aria-expanded="true" [attr.aria-controls]="'collapse'+i" >
+            {{Proyectos.nombreE}}
+                    </button>
+        </h2>
+        <div [id]="'collapse'+i"  class="accordion-collapse collapse show" [ngClass]="{'show':i == 0}"
+        [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            {{Proyectos.descripcionE}}
+            <br>
+            <br>
+            <img src={{Proyectos.img}} class="img-fluid" width="150px">
+            <br>
+            <td *ngIf="isLogged">
+              <button class="btn btn-light" routerLink="/editproyectos/{{Proyectos.id}}">
+                  <i class="bi bi-card-image" ></i>CARGAR IMAGEN </button>                           
+          </td>
+            <td *ngIf="isLogged">
+                <button class="btn btn-light" routerLink="/editproyectos/{{Proyectos.id}}">
+                    <i class="bi bi-pencil-fill"></i> </button>                           
+            </td>                   
+            <td *ngIf="isLogged">
+                <button class="btn btn-secondary" (click)="delete(Proyectos.id)">
+                    <i class="bi bi-trash-fill"></i> </button>
+            </td>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">AGREGAR PROYECTO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+                <div>
+                    <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+                        <div class="form-group">
+                            <label for="nombreP">Nombre del Proyecto</label>
+                            <input type="text" class="form-control" id="nombreP" name="nombreP" [(ngModel)]="nombreE" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcionP">Descripcion</label>
+                            <input type="text" class="form-control" id="descripcionP" name="descripcionP" [(ngModel)]="descripcionE" required>
+                        </div>
+                      
+                        
+                        <button class="btn btn-dark"  onclick="">CARGAR<i class="bi bi-check">
+                        </i>
+                        </button>
+                    </form>
+                </div>
             
         </div>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >CERRAR</button>
+      
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  </div>

@@ -1,93 +1,83 @@
 <div class="row">
-    <h1>Soft and hard shills</h1>
-<div class= "text-center col-sm-4 col-md-4 col-lg-4">
-    <circle-progress
-        [percent]="90"
-        [title]="'HTML'"
-        [showSubtitle]="false"
+
+    <h1>Hard & Soft skills</h1>
+    <div class="col-lg-2">
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal2" *ngIf="isLogged">
+            Agregar Skill
+          </button>
+       <!-- <button type="button" routerLink="/newskill" class="btn btn-dark" *ngIf="isLogged">Nueva Skill</button>-->
+    </div>
+
+    <div class="text-center col-sm-4 col-md-4 col-lg-4 circulo" *ngFor="let skill of skill">
+
+     
+
+        <circle-progress 
+        [percent]="(skill.porcentaje)" 
+        [radius]="90" [imageSrc]="''" 
+        [title]="(skill.nombre)"
+        [titleColor]="'#FFFFFF'"
+        [showTitle]="true" 
+        [showImage]="false" 
+        [imageHeight]="70" 
+        [imageWidth]="70" 
         [showUnits]="false"
-        [radius]="100"
-        [outerStrokeWidth]="16"
-        [innerStrokeWidth]="8"
-        [outerStrokeColor]="'#78C000'"
-        [innerStrokeColor]="'#C7E596'"
-        [animation]="true"
-        [animationDuration]="300"
-    ></circle-progress>
+        [showSubtitle]="false" 
+        [outerStrokeWidth]="16" 
+        [innerStrokeWidth]="2" 
+        [outerStrokeColor]="'#140b93'"
+        [innerStrokeColor]="'#F1EAEB'" 
+        [animation]="true" 
+        [animationDuration]="1000">
+        </circle-progress>
+        <div>
+          <td *ngIf="isLogged">
+              <button class="btn btn-light" routerLink="/editskill/{{skill.id}}">
+                  <i class="bi bi-pencil-fill"></i></button>
+          </td>
+          <td *ngIf="isLogged">
+              <button class="btn btn-secondary" (click)="delete(skill.id)">
+                  <i class="bi bi-trash-fill"></i></button>
+          </td>
+      </div>
+      </div>
+      
 </div>
-<div class= "text-center col-sm-4 col-md-4 col-lg-4">
-    <circle-progress
-        [percent]="95"
-        [title]="'JAVA'"
-        [showSubtitle]="false"
-        [showUnits]="false"
-        [radius]="100"
-        [outerStrokeWidth]="16"
-        [innerStrokeWidth]="8"
-        [outerStrokeColor]="'#78C000'"
-        [innerStrokeColor]="'#C7E596'"
-        [animation]="true"
-        [animationDuration]="300"
-    ></circle-progress>
-</div>
-<div class= "text-center col-sm-4 col-md-4 col-lg-4">
-    <circle-progress
-    [percent]="70"
-    [title]="'INGLÉS'"
-    [showSubtitle]="false"
-    [showUnits]="false"
-    [radius]="100"
-    [outerStrokeWidth]="16"
-    [innerStrokeWidth]="8"
-    [outerStrokeColor]="'#78C000'"
-    [innerStrokeColor]="'#C7E596'"
-    [animation]="true"
-    [animationDuration]="300"
-></circle-progress>
-</div>
-<div class= "text-center col-sm-4 col-md-4 col-lg-4">
-    <circle-progress
-        [percent]="80"
-        [title]="'JAVASCRIPT'"
-        [showSubtitle]="false"
-        [showUnits]="false"
-        [radius]="100"
-        [outerStrokeWidth]="16"
-        [innerStrokeWidth]="8"
-        [outerStrokeColor]="'#78C000'"
-        [innerStrokeColor]="'#C7E596'"
-        [animation]="true"
-        [animationDuration]="300"
-    ></circle-progress>
-</div>
-<div class= "text-center col-sm-4 col-md-4 col-lg-4">
-    <circle-progress
-    [percent]="95"
-    [title]="'MYSQL'"
-    [showSubtitle]="false"
-    [showUnits]="false"
-    [radius]="100"
-    [outerStrokeWidth]="16"
-    [innerStrokeWidth]="8"
-    [outerStrokeColor]="'#78C000'"
-    [innerStrokeColor]="'#C7E596'"
-    [animation]="true"
-    [animationDuration]="300"
-></circle-progress>
-</div>
-<div class= "text-center col-sm-4 col-md-4 col-lg-4">
-    <circle-progress
-    [percent]="80"
-    [title]="'GITHUB'"
-    [showSubtitle]="false"
-    [showUnits]="false"
-    [radius]="100"
-    [outerStrokeWidth]="16"
-    [innerStrokeWidth]="8"
-    [outerStrokeColor]="'#78C000'"
-    [innerStrokeColor]="'#C7E596'"
-    [animation]="true"
-    [animationDuration]="300"
-></circle-progress>
-</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">AGREGAR COMPETENCIA</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+              <div>
+                  <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+                      <div class="form-group">
+                          <label for="nombre">Nueva Skill</label>
+                          <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombre" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="porcentaje">Porcentaje</label>
+                          <input type="text" class="form-control" id="porcentaje" name="porcentaje" [(ngModel)]="porcentaje" required>
+                      </div>
+                      <button class="btn btn-dark"  onclick="">CARGAR<i class="bi bi-check">
+                      </i>
+                      </button>
+                  </form>
+              </div>
+          
+      </div>
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >CERRAR</button>
+    
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "frontendjfm"
+  },
+  "targets": {
+    "frontendjfm": {
+      "hosting": {
+        "portfolio-mainardi": [
+          "frontendjfm"
+        ]
+      }
+    }
+  }
+}

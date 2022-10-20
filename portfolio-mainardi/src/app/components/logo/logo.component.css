@@ -23,7 +23,7 @@ img{
     }
     .redessociales{
         display: flex;
-        flex-direction: column;
+      
         align-items: center;
     }
     .redessociales img{

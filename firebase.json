@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "portfolio-mainardi\\dist\\portfolio-mainardi",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

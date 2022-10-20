@@ -1,27 +1,41 @@
 <div class="row">
     <h1>Experiencia laboral</h1>
     <div class="col-lg-2">
-        <button type="button" class="btn btn-dark" routerLink="/nuevaexp" *ngIf="isLogged">
+
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal3" *ngIf="isLogged">
+            Agregar Experiencia
+          </button>
+      <!--  <button type="button" class="btn btn-dark" routerLink="/nuevaexp" *ngIf="isLogged">
             Nueva Experiencia
-        </button>
+        </button>-->
     </div>
+
+
 
     <div class="col lg 1"></div>
     <div class="col-lg-11">
-        <table class="table">
+        <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">EMPRESA</th>
+                <th scope="col">CARGO</th>              
+              </tr>
+            </thead>
             <tbody>
                 <tr *ngFor="let Experiencia of expe">
                     <td>
-                        <h2>{{Experiencia.nombreE}}</h2>
+                        {{Experiencia.nombreE}}
                     </td>
-                    <td>{{Experiencia.descripcionE}}</td>
+                    <td>
+                        {{Experiencia.descripcionE}}
+                    </td>
                     <td *ngIf="isLogged">
                         <button class="btn btn-light" routerLink="/editexp/{{Experiencia.id}}">
-                            <i class="bi bi-pencil-fill"></i> EDITAR</button>
+                            <i class="bi bi-pencil-fill"></i> </button>
                     </td>
                     <td *ngIf="isLogged">
-                        <button class="btn btn-danger" (click)="delete(Experiencia.id)">
-                            <i class="bi bi-trash-fill"></i> BORRAR</button>
+                        <button class="btn btn-secondary" (click)="delete(Experiencia.id)">
+                            <i class="bi bi-trash-fill"></i> </button>
                     </td>
                 </tr>
             </tbody>
@@ -29,3 +43,43 @@
     </div>
 
 </div>
+
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel3">AGREGAR EXPERIENCIA</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+                <div>
+                    <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+                        <div class="form-group">
+                            <label for="nombreE">Nombre de la empresa</label>
+                            <input type="text" class="form-control" id="nombreE" name="nombreE" [(ngModel)]="nombreE" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcionE">Descripcion de la tarea</label>
+                            <input type="text" class="form-control" id="descripcionE" name="descripcionE" [(ngModel)]="descripcionE" required>
+                        </div>
+                        <button class="btn btn-dark"  onclick="">CARGAR<i class="bi bi-check">
+                        </i>
+                        </button>
+                    </form>
+                </div>
+            
+        </div>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >CERRAR</button>
+        
+      
+        </div>
+      </div>
+    </div>
+  </div>
+

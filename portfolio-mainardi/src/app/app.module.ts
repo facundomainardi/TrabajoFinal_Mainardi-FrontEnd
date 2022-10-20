@@ -23,10 +23,23 @@ import { EditExperienciaComponent } from './components/experiencialab/edit-exper
 import { EditeducacionComponent } from './components/educ/edit-educacion.component';
 import { NeweducacionComponent } from './components/educ/new-educacion.component';
 import { EducacionComponent } from './servicios/educacion/educacion.component';
+import { EsitSkillComponent } from './components/hys/esit-skill.component';
+import { NewSkillComponent } from './components/hys/new-skill.component';
+import { NewproyectosComponent } from './components/proyectos/new-proyectos.component';
+import { EditproyectosComponent } from './components/proyectos/edit-proyectos.component';
+import { NewProyectos2Component } from './components/proyectos/new-proyectos2.component';
+import { EdicAcercaDeComponent } from './components/acde/edic-acerca-de.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+//import { ArchivoComponent } from './components/archivo/archivo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NewproyectosComponent,
     HeaderComponent,
     LogoComponent,
     RedessocialesComponent,
@@ -43,15 +56,26 @@ import { EducacionComponent } from './servicios/educacion/educacion.component';
     EditExperienciaComponent,
     EditeducacionComponent,
     NeweducacionComponent,
-    EducacionComponent
+    EducacionComponent,
+    EsitSkillComponent,
+    NewSkillComponent,
+   
+    EditproyectosComponent,
+        NewProyectos2Component,
+        EdicAcercaDeComponent,
+       // ArchivoComponent
   ],
   imports: [
+    DragDropModule,
     FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [
     InterceptorProvider

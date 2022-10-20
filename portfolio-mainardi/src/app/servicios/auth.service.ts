@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  authURL = "http://localhost:8080/auth/";
+  authURL = "https://backendargprogm.herokuapp.com/auth/";
  
   constructor(private httpClient: HttpClient) { }
 

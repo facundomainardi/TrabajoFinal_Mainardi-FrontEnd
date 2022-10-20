@@ -101,9 +101,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "portfolio-mainardi:build:production",
+            "firebaseProject": "frontendjfm",
+            "firebaseHostingSite": "frontendjfm"
+          }
         }
       }
     }
   },
-  "defaultProject": "portfolio-mainardi"
+  "cli": {
+    "analytics": false
+  }
 }

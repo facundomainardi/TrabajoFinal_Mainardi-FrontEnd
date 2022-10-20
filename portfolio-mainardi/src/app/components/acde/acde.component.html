@@ -1,18 +1,28 @@
+
+
+
+
 <div class="row">
-    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-        <img src="../../../assets/facu.jpg" 
-        class="img-fluid" id="fotofacu">
+
+    <button type="button" class="btn btn-dark" routerLink="/editacercade/1" *ngIf="isLogged">
+   EDITAR
+    </button>
+
+
+  <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2" >
+        <img src={{persona.img}} class="img-fluid" id="fotofacu" cdkDrag>
     </div>
+      <!--<div class="example-box" cdkDrag>
+        <img src={{persona.img}} class="img-fluid" id="fotofacu">
+      </div>-->
+    
     <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
         <p id="nombre">{{persona.nombre}} {{persona.apellido}}</p>
         <p>Full Stack Web Developer Jr</p>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <h1>SOBRE MI</h1>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Impedit error debitis eius veritatis natus atque 
-            quidem excepturi! Ab eaque ratione corrupti odio 
-            consequuntur minima,
-             nostrum assumenda quia optio natus eius!</P>
+        <P>{{persona.descripcion}}</P>
     </div>
+   
 </div>
